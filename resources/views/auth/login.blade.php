@@ -49,6 +49,7 @@
 
               <!-- Submit Button -->
               <div class="form-group text-center">
+                {{--  <button type="submit" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">  --}}
                 <button type="submit" class="btn round btn-block btn-glow btn-bg-gradient-x-purple-blue col-12 mr-1 mb-1">
                   Login
                 </button>
