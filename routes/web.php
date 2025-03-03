@@ -79,7 +79,27 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/questions/show', function () {
         return view('dashboard.questions.show');
     })->name('questions.show');
-
+    Route::get('/tests', function () {
+        return view('dashboard.tests.index');
+    })->name('tests.index');
+    Route::get('/tests/show', function () {
+        return view('dashboard.tests.show');
+    })->name('tests.show');
+    Route::get('/tests/hasil', function () {
+        return view('dashboard.tests.hasil');
+    })->name('tests.hasil');
+    Route::get('/tests/results', function () {
+        return view('dashboard.tests.results');
+    })->name('tests.results');
+    Route::get('/tests/submit', function () {
+        return view('dashboard.tests.submit');
+    })->name('tests.submit');
+    Route::get('/edit_profile', function () {
+        return view('dashboard.users.update_user');
+    })->name('users.edit_profile');
+    Route::get('/configs', function () {
+        return view('dashboard.config.index');
+    })->name('settings.configs');
 });
     
 require __DIR__.'/auth.php';
