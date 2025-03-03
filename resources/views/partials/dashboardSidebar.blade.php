@@ -3,9 +3,9 @@
         <ul class="nav navbar-nav flex-row">
             <li class="nav-item mr-auto">
                 <a class="navbar-brand" href="{{ url('dashboard/index') }}">
-                    <img class="brand-logo" alt="admin logo" src="{{ asset('back/images/logo/logo.png') }}" />
+                    <img class="brand-logo" alt="admin logo" src="{{ asset('back/images/logo/ihbs-logo.png') }}" />
 
-                    <h3 class="brand-text">Laravel SIMSE</h3>
+                    <h3 class="brand-text">SIMSE IHBS</h3>
                 </a>
             </li>
             <li class="nav-item d-md-none">

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title', 'Auth Page')</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('back/images/logo/ihbs-logo.png') }}">
     <link rel="apple-touch-icon" href="{{ asset('back/images/ico/favicon.ico') }}">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{ asset('back/css/vendors.min.css') }}">

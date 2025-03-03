@@ -25,6 +25,46 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/teachings/edit', function () {
         return view('dashboard.teaching_data.edit');
     })->name('teachings.edit');
+    Route::get('/students', function () {
+        return view('dashboard.students.index');
+    })->name('students.index');
+    Route::get('/announcements', function () {
+        return view('dashboard.announcements.index');
+    })->name('announcements.index');
+    Route::get('/categories', function () {
+        return view('dashboard.categories.index');
+    })->name('categories.index');
+    Route::get('/vendors', function () {
+        return view('dashboard.vendors.index');
+    })->name('categories.index');
+    Route::get('/inventories', function () {
+        return view('dashboard.inventories.index');
+    })->name('inventories.index');
+    Route::get('/violations', function () {
+        return view('dashboard.violations.index');
+    })->name('violations.index');
+    Route::get('/violation-types', function () {
+        return view('dashboard.violation_types.index');
+    })->name('violation-types.index');
+    Route::get('/sanction-types', function () {
+        return view('dashboard.sanction_types.index');
+    })->name('sanction-types.index');
+    Route::get('/achievements', function () {
+        return view('dashboard.achievements.index');
+    })->name('achievements.index');
+    Route::get('/achievement-types', function () {
+        return view('dashboard.achievement_types.index');
+    })->name('achievement-types.index');
+    Route::get('/achievement-awards', function () {
+        return view('dashboard.achievement_awards.index');
+    })->name('achievement-awards.index');
+    Route::get('/curriculums', function () {
+        return view('dashboard.curriculums.index');
+    })->name('curriculums.index');
+    Route::get('/silabuses', function () {
+        return view('dashboard.silabus.index');
+    })->name('silabuses.index');
+
 });
     
 require __DIR__.'/auth.php';

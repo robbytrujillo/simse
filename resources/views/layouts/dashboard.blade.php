@@ -9,7 +9,8 @@
     <title>@yield('title', 'Dashboard')</title>
     <meta name="csrf-token" c>
     <link rel="apple-touch-icon" href="{{ asset('back/images/apple-icon-120.png') }}">
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('back/images/favicon.ico') }}">
+    {{--  <link rel="shortcut icon" type="image/x-icon" href="{{ asset('back/images/favicon.ico') }}">  --}}
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('back/images/logo/ihbs-logo.png') }}">
   
     <link href="https://fonts.googleapis.com/css?family=Muli:300,400,600,700" rel="stylesheet">
 
