@@ -64,6 +64,21 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/silabuses', function () {
         return view('dashboard.silabus.index');
     })->name('silabuses.index');
+    Route::get('/exams', function () {
+        return view('dashboard.exams.index');
+    })->name('exams.index');
+    Route::get('/questions', function () {
+        return view('dashboard.questions.index');
+    })->name('questions.index');
+    Route::get('/questions/create', function () {
+        return view('dashboard.questions.create');
+    })->name('questions.create');
+    Route::get('/questions/edit', function () {
+        return view('dashboard.questions.edit');
+    })->name('questions.edit');
+    Route::get('/questions/show', function () {
+        return view('dashboard.questions.show');
+    })->name('questions.show');
 
 });
     
