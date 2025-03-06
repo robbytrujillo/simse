@@ -1,10 +1,20 @@
 <?php 
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Dashboard\ClassRoomController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
+
+Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function () {
+    Route::get('/index', [DashboardController::class, 'index'])->name('dashboard.index');
+    Route::resource('/classrooms', ClassRoomController::class);
+    Route::resource('/teachers', TeacherController::class);
+    Route::post('/teachers/import', [TeacherController::class, 'import'])->name('teachers.import');
+});
 
 Route::prefix('dashboard')->group(function () {
     Route::get('/index', function () {
@@ -13,9 +23,9 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/classrooms', function () {
         return view('dashboard.classrooms.index');
     })->name('classrooms.index');
-    Route::get('/teachers', function () {
-        return view('dashboard.teachers.index');
-    })->name('teachers.index');
+    // Route::get('/teachers', function () {
+    //     return view('dashboard.teachers.index');
+    // })->name('teachers.index');
     Route::get('/mapels', function () {
         return view('dashboard.mapels.index');
     })->name('mapels.index');

@@ -28,8 +28,20 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        // Memeriksa apakah pengguna yang login adalah admin atau guru
+        if (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru')) {
+            return redirect()->intended(route('dashboard.index', absolute: false));
+        }
+
+        // Memeriksa apakah pengguna yang login adalah siswa
+        if (auth()->user()->hasRole('siswa')) {
+            return redirect()->intended(route('tests.index', absolute: false));
+        }
+
+        // Default redirect jika tidak ada kondisi yang cocok
+        return redirect()->intended(route('/', absolute: false));
     }
+
 
     /**
      * Destroy an authenticated session.
@@ -42,6 +54,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('/login');
     }
 }
+

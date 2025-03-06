@@ -1,29 +1,44 @@
 <script>
     $(document).ready(function() {
-        $(document).on("click", ".delete-class", function() {
-
+        $(document).on("click", ".delete-teacher", function() {
             const id = $(this).data("id");
-
-            $("#delete_class_form").attr("action", "");
+            const deleteURL = "{{ route('teachers.destroy', ':id') }}".replace(':id', id);
+            $("#delete_teacher_form").attr("action", deleteURL);
         });
 
         $(document).on("click", ".edit-modal", function() {
-
             const id = $(this).data("id");
+            let url = "{{ route('teachers.show', ':paramID') }}".replace(":paramID", id);
+            let updateURL = "{{ route('teachers.update', ':paramID') }}".replace(":paramID", id);
 
             $.ajax({
-                url: "",
+                url: url,
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 success: (res) => {
+                    $("#edit_full_name").val(res.data.full_name);
+                    $("#edit_position").val(res.data.position);
+                    $("#edit_gender").val(res.data.gender);
+                    $("#edit_birth_place").val(res.data.birth_place);
+                    $("#edit_birth_date").val(res.data.birth_date);
+                    $("#edit_address").val(res.data.address);
+                    $("#edit_phone").val(res.data.phone);
+                    $("#edit_email").val(res.data.email);
+                    $("#edit_last_education").val(res.data.last_education);
+                    $("#edit_education_institution").val(res.data.education_institution);
+                    $("#edit_graduation_year").val(res.data.graduation_year);
+                    $("#edit_employee_id").val(res.data.employee_id);
+                    $("#edit_employment_status").val(res.data.employment_status);
+                    $("#edit_start_date").val(res.data.start_date);
 
-                    $("#edit_name").val(res.data.name);
-                    $("#edit_slug").val(res.data.slug); 
-                    $("#edit_teacher").val(res.data.teacher_id); 
+                    if (res.data.image) {
+                        const imageUrl = '/storage/' + res.data.image;
+                        $("#image_preview").attr("src", imageUrl).show();
+                    }
 
-                    $("form").attr("action", "");
+                    $("form").attr("action", updateURL);
                 },
                 error: (err) => {
                     alert("An error occurred, please check the console for details.");

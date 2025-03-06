@@ -1,25 +1,23 @@
 <script>
     $(document).ready(function() {
-        // Delete Teacher
         $(document).on("click", ".delete-teacher", function() {
             const id = $(this).data("id");
-
-            // Set the action attribute of the delete form (replace empty string with actual delete URL if needed)
-            $("#delete_teacher_form").attr("action", "");
+            const deleteURL = "{{ route('teachers.destroy', ':id') }}".replace(':id', id);
+            $("#delete_teacher_form").attr("action", deleteURL);
         });
 
-        // Edit Teacher
         $(document).on("click", ".edit-modal", function() {
             const id = $(this).data("id");
+            let url = "{{ route('teachers.show', ':paramID') }}".replace(":paramID", id);
+            let updateURL = "{{ route('teachers.update', ':paramID') }}".replace(":paramID", id);
 
             $.ajax({
-                url: "",  // Replace with the URL to fetch teacher data by ID
+                url: url,
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 success: (res) => {
-                    // Populate the modal fields with teacher data
                     $("#edit_full_name").val(res.data.full_name);
                     $("#edit_position").val(res.data.position);
                     $("#edit_gender").val(res.data.gender);
@@ -35,14 +33,12 @@
                     $("#edit_employment_status").val(res.data.employment_status);
                     $("#edit_start_date").val(res.data.start_date);
 
-                    // If there's an image, show it in the modal
                     if (res.data.image) {
                         const imageUrl = '/storage/' + res.data.image;
                         $("#image_preview").attr("src", imageUrl).show();
                     }
 
-                    // Set the form action to the update URL (replace empty string with actual update URL if needed)
-                    $("form").attr("action", "");
+                    $("form").attr("action", updateURL);
                 },
                 error: (err) => {
                     alert("An error occurred, please check the console for details.");
