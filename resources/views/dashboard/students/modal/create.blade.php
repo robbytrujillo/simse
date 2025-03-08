@@ -8,53 +8,55 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data">
+                <form action="{{ route('students.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="row">
-                        <!-- Column 1 -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="nis">NIS</label>
-                                <input type="text" class="form-control" name="nis" required>
+                                <input type="text" class="form-control" name="nis" value="{{ old('nis') }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Siswa</label>
-                                <input type="text" class="form-control" name="name" required>
+                                <input type="text" class="form-control" name="name" value="{{ old('name') }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="class_id">Kelas</label>
                                 <select class="form-control" name="class_id" required>
                                     <option value="">Pilih Kelas</option>
+                                    @foreach($classes as $class)
+                                    <option value="{{ $class->id }}" {{ old('class_id') == $class->id ? 'selected' : '' }}>{{ $class->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
                                 <select class="form-control" name="gender" required>
-                                    <option value="L">Laki-laki</option>
-                                    <option value="P">Perempuan</option>
+                                    <option value="L" {{ old('gender') == 'L' ? 'selected' : '' }}>Laki-laki</option>
+                                    <option value="P" {{ old('gender') == 'P' ? 'selected' : '' }}>Perempuan</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="dob">Tanggal Lahir</label>
-                                <input type="date" class="form-control" name="dob" required>
+                                <input type="date" class="form-control" name="dob" value="{{ old('dob') }}" required>
                             </div>
                         </div>
-                        <!-- Column 2 -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="address">Alamat</label>
-                                <textarea class="form-control" name="address" rows="3" required></textarea>
+                                <textarea class="form-control" name="address" rows="3" required>{{ old('address') }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="phone">No. Telepon</label>
-                                <input type="text" class="form-control" name="phone" required>
+                                <input type="text" class="form-control" name="phone" value="{{ old('phone') }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="father_name">Nama Ayah</label>
-                                <input type="text" class="form-control" name="father_name" required>
+                                <input type="text" class="form-control" name="father_name" value="{{ old('father_name') }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Siswa</label>
-                                <input type="text" class="form-control" name="email" required>
+                                <label for="name">Email Siswa</label>
+                                <input type="text" class="form-control" name="email" value="{{ old('email') }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="image">Foto Siswa</label>

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST">
+                <form action="{{ route('mapels.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="nama_mapel">Nama Mata Pelajaran</label>

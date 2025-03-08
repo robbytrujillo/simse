@@ -8,7 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" id="editStudentForm">
+                <form action="{{ route('students.update', ':id') }}" method="POST" enctype="multipart/form-data" id="editStudentForm">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group">
                         <label for="nis">NIS</label>
                         <input type="text" class="form-control" name="nis" id="edit_nis" required>
@@ -47,7 +49,9 @@
                     <div class="form-group">
                         <label for="class_id">Kelas</label>
                         <select class="form-control" name="class_id" id="edit_class_id" required>
-                            <option value="">Pilih Kelas</option>
+                            @foreach($classes as $class)
+                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -64,4 +68,3 @@
         </div>
     </div>
 </div>
-

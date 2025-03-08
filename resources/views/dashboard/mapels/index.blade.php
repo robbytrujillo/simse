@@ -48,55 +48,24 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($mapels as $mapel)
                   <tr>
-                    <td>1</td>
-                    <td>Matematika</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $mapel->nama_mapel }}</td>
                     <td>
                       <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
+                        <a href="#" data-id="{{ $mapel->id }}" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
                           data-target="#mapel_edit_modal" title="Ubah Mata Pelajaran">
                           <i class="ft-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-mapel" data-toggle="modal"
+                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-mapel" data-id="{{ $mapel->id }}" data-toggle="modal"
                           data-target="#delete_mapel_modal" title="Hapus">
                           <i class="ft-delete"></i>
                         </a>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Bahasa Indonesia</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
-                          data-target="#mapel_edit_modal" title="Ubah Mata Pelajaran">
-                          <i class="ft-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-mapel" data-toggle="modal"
-                          data-target="#delete_mapel_modal" title="Hapus">
-                          <i class="ft-delete"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Fisika</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
-                          data-target="#mapel_edit_modal" title="Ubah Mata Pelajaran">
-                          <i class="ft-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-mapel" data-toggle="modal"
-                          data-target="#delete_mapel_modal" title="Hapus">
-                          <i class="ft-delete"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <!-- Add more static data rows as needed -->
+                  @endforeach
                 </tbody>
                 <tfoot>
                   <tr>

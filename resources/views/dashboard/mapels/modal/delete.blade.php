@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Mata Pelajaran -->
 <div class="modal fade" id="delete_mapel_modal" tabindex="-1" role="dialog" aria-labelledby="deleteMapelLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
