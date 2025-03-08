@@ -10,7 +10,7 @@
       <div class="breadcrumbs-top float-md-right">
         <div class="breadcrumb-wrapper mr-1">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Kelas</li>
           </ol>
         </div>
@@ -50,57 +50,27 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($classRooms as $class)
                   <tr>
-                    <td>1</td>
-                    <td>Kelas 1A</td>
-                    <td>kelas-1a</td>
-                    <td>Budi Santoso</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $class->name }}</td>
+                    <td>{{ $class->slug }}</td>
+                    <td>{{ $class->teacher->full_name ?? 'Belum Ada Wali Kelas' }}</td>
                     <td>
                       <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
+                        <a href="#" data-id="{{ $class->id }}"
+                          class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
                           data-target="#class_edit_modal" title="Ubah Kelas">
                           <i class="ft-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-class" data-toggle="modal" data-target="#delete_class_modal" title="Hapus">
+                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-class" data-id="{{ $class->id }}"
+                          data-toggle="modal" data-target="#delete_class_modal" title="Hapus">
                           <i class="ft-delete"></i>
                         </a>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Kelas 2B</td>
-                    <td>kelas-2b</td>
-                    <td>Ani Suryani</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
-                          data-target="#class_edit_modal" title="Ubah Kelas">
-                          <i class="ft-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-class" data-toggle="modal" data-target="#delete_class_modal" title="Hapus">
-                          <i class="ft-delete"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>3</td>
-                    <td>Kelas 3C</td>
-                    <td>kelas-3c</td>
-                    <td>Belum Ada Wali Kelas</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
-                          data-target="#class_edit_modal" title="Ubah Kelas">
-                          <i class="ft-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-class" data-toggle="modal" data-target="#delete_class_modal" title="Hapus">
-                          <i class="ft-delete"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
+                  @endforeach
                 </tbody>
                 <tfoot>
                   <tr>

@@ -20,9 +20,9 @@ Route::prefix('dashboard')->group(function () {
     Route::get('/index', function () {
         return view('dashboard.home.index');
     })->name('dashboard.index');
-    Route::get('/classrooms', function () {
-        return view('dashboard.classrooms.index');
-    })->name('classrooms.index');
+    // Route::get('/classrooms', function () {
+    //     return view('dashboard.classrooms.index');
+    // })->name('classrooms.index');
     // Route::get('/teachers', function () {
     //     return view('dashboard.teachers.index');
     // })->name('teachers.index');
