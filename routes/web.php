@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\MapelController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\TeacherController;
+use App\Http\Controllers\Dashboard\TeachingDataController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -19,6 +20,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/students', StudentController::class);
     Route::post('/students/import', [StudentController::class, 'import'])->name('students.import');
     Route::resource('/mapels', MapelController::class);
+    Route::resource('/teachings', TeachingDataController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -34,12 +36,12 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/mapels', function () {
     //     return view('dashboard.mapels.index');
     // })->name('mapels.index');
-    Route::get('/teachings', function () {
-        return view('dashboard.teaching_data.index');
-    })->name('teachings.index');
-    Route::get('/teachings/edit', function () {
-        return view('dashboard.teaching_data.edit');
-    })->name('teachings.edit');
+    // Route::get('/teachings', function () {
+    //     return view('dashboard.teaching_data.index');
+    // })->name('teachings.index');
+    // Route::get('/teachings/edit', function () {
+    //     return view('dashboard.teaching_data.edit');
+    // })->name('teachings.edit');
     // Route::get('/students', function () {
     //     return view('dashboard.students.index');
     // })->name('students.index');

@@ -3,12 +3,12 @@
 @section('content')
 <section id="configuration">
     <div class="content-header row">
-        <div class="content-header-left col-md-4 col-12 mb-2">
+        <div class="mb-2 content-header-left col-md-4 col-12">
             <h3 class="content-header-title">Teaching Data</h3>
         </div>
         <div class="content-header-right col-md-8 col-12">
             <div class="breadcrumbs-top float-md-right">
-                <div class="breadcrumb-wrapper mr-1">
+                <div class="mr-1 breadcrumb-wrapper">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Teaching Data</li>
@@ -23,7 +23,7 @@
                 <div class="card-header">
                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
-                        <ul class="list-inline mb-0">
+                        <ul class="mb-0 list-inline">
                             <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
                             <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
                             <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
@@ -33,60 +33,62 @@
                 </div>
                 <div class="card-content collapse show">
                     <div class="card-body card-dashboard">
-                        <form action="#" method="POST">
+                        <form action="{{ route('teachings.update', $teaching->id) }}" method="POST">
                             @csrf
                             @method('PUT')
-                            <!-- Pilihan Guru -->
                             <div class="form-group">
                                 <label for="teacher_id">Guru</label>
                                 <select class="form-control" name="teacher_id" required>
                                     <option value="" disabled>Pilih Guru</option>
-                                    <option value="1">Guru A</option>
-                                    <option value="2">Guru B</option>
-                                    <option value="3">Guru C</option>
+                                    @foreach($teachers as $teacher)
+                                    <option value="{{ $teacher->id }}" {{ $teacher->id == $teaching->teacher_id ? 'selected' : '' }}>
+                                        {{ $teacher->full_name }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
 
-                            <!-- Pilihan Kelas -->
                             <div class="form-group">
                                 <label for="class_id">Kelas</label>
                                 <select class="form-control" name="class_id" required>
                                     <option value="" disabled>Pilih Kelas</option>
-                                    <option value="1">Kelas X</option>
-                                    <option value="2">Kelas XI</option>
-                                    <option value="3">Kelas XII</option>
+                                    @foreach($classlists as $class)
+                                    <option value="{{ $class->id }}" {{ $class->id == $teaching->class_id ? 'selected' : '' }}>
+                                        {{ $class->name }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
 
-                            <!-- Mata Pelajaran -->
-                            <div class="form-group">
-                                <label for="mapel_id">Mata Pelajaran</label>
-                                <select class="form-control" name="mapel_id" required>
-                                    <option value="" disabled>Pilih Mapel</option>
-                                    <option value="1">Matematika</option>
-                                    <option value="2">Fisika</option>
-                                    <option value="3">Kimia</option>
-                                </select>
-                            </div>
+                            <select class="form-control" name="mapel_id" required>
+                                <option value="" disabled>Pilih Mapel</option>
+                                @foreach($mapels as $mapel)
+                                <option value="{{ $mapel->id }}" {{ $mapel->id == $teaching->mapel_id ? 'selected' : '' }}>
+                                    {{ $mapel->nama_mapel }}
+                                </option>
+                                @endforeach
+                            </select>
 
-                            <!-- Jam Mengajar -->
                             <div class="form-group">
                                 <label for="hours_per_week">Jam Mengajar per Minggu</label>
-                                <input type="number" class="form-control" name="hours_per_week" value="3" required>
+                                <input type="number" class="form-control" name="hours_per_week" value="{{ old('hours_per_week', $teaching->hours_per_week) }}" required>
                             </div>
 
-                            <!-- Pilihan Hari -->
-                            <div class="form-group mt-1">
-                                <label for="days">Pilih Hari</label>
+                            <div class="mt-1 form-group">
+                                <div class="text-bold-600 font-medium-2">
+                                    Pilih Hari
+                                </div>
                                 <select class="select2 js-example-programmatic-multi form-control" id="programmatic-multiple" name="days[]" multiple="multiple">
-                                    <option value="Senin">Senin</option>
-                                    <option value="Selasa">Selasa</option>
-                                    <option value="Rabu">Rabu</option>
-                                    <option value="Kamis">Kamis</option>
-                                    <option value="Jumat">Jumat</option>
-                                    <option value="Sabtu">Sabtu</option>
+                                    <option value="Senin" {{ in_array('Senin', $teaching->day ?? []) ? 'selected' : '' }}>Senin</option>
+                                    <option value="Selasa" {{ in_array('Selasa', $teaching->day ?? []) ? 'selected' : '' }}>Selasa</option>
+                                    <option value="Rabu" {{ in_array('Rabu', $teaching->day ?? []) ? 'selected' : '' }}>Rabu</option>
+                                    <option value="Kamis" {{ in_array('Kamis', $teaching->day ?? []) ? 'selected' : '' }}>Kamis</option>
+                                    <option value="Jumat" {{ in_array('Jumat', $teaching->day ?? []) ? 'selected' : '' }}>Jumat</option>
+                                    <option value="Sabtu" {{ in_array('Sabtu', $teaching->day ?? []) ? 'selected' : '' }}>Sabtu</option>
                                 </select>
                             </div>
+
+                            <div id="dynamic-fields"></div>
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -100,4 +102,49 @@
     </div>
 </section>
 
+@push('js')
+<script>
+    $(document).ready(function() {
+        $('.select2').select2();
+
+        function updateDayFields() {
+            const selectedDays = $('#programmatic-multiple').val();
+            const dynamicFields = $('#dynamic-fields');
+            const teachingData = @json($teaching);
+            const days = teachingData.day || [];
+            const startTimes = teachingData.start_time || [];
+            const endTimes = teachingData.end_time || [];
+
+            dynamicFields.empty();
+
+            selectedDays.forEach(function(day, index) {
+                const startTime = startTimes[index] || '';
+                const endTime = endTimes[index] || '';
+
+                dynamicFields.append(`
+                <div class="form-group day-item" id="day-item-${index}">
+                    <label for="day_${day}">${day}</label>
+                    <input type="text" class="form-control" name="day[]" value="${day}" required readonly>
+                </div>
+                <div class="form-group">
+                    <label for="start_time_${day}">Jam Mulai ${day}</label>
+                    <input type="time" class="form-control" name="start_time[]" value="${startTime}" required>
+                </div>
+                <div class="form-group">
+                    <label for="end_time_${day}">Jam Selesai ${day}</label>
+                    <input type="time" class="form-control" name="end_time[]" value="${endTime}" required>
+                </div>
+            `);
+            });
+        }
+
+        updateDayFields();
+
+        $('#programmatic-multiple').change(function() {
+            updateDayFields();
+        });
+    });
+</script>
+@endpush
 @endsection
+

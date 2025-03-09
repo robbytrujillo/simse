@@ -8,50 +8,43 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('teachings.store') }}" method="POST">
                     @csrf
-                    <!-- Pilihan Guru -->
                     <div class="form-group">
                         <label for="teacher_id">Guru</label>
                         <select class="form-control" name="teacher_id" required>
                             <option value="" selected disabled>Pilih Guru</option>
-                            <option value="1">Guru A</option>
-                            <option value="2">Guru B</option>
-                            <option value="3">Guru C</option>
+                            @foreach($teachers as $teacher)
+                            <option value="{{ $teacher->id }}">{{ $teacher->full_name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Pilihan Kelas -->
                     <div class="form-group">
                         <label for="class_id">Kelas</label>
                         <select class="form-control" name="class_id" required>
                             <option value="" selected disabled>Pilih Kelas</option>
-                            <option value="1">Kelas X</option>
-                            <option value="2">Kelas XI</option>
-                            <option value="3">Kelas XII</option>
+                            @foreach($classlists as $class)
+                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Mata Pelajaran -->
                     <div class="form-group">
                         <label for="mapel_id">Mata Pelajaran</label>
                         <select class="form-control" name="mapel_id" required>
                             <option value="" selected disabled>Pilih Mapel</option>
-                            <option value="1">Matematika</option>
-                            <option value="2">Fisika</option>
-                            <option value="3">Kimia</option>
+                            @foreach($mapels as $mapel)
+                            <option value="{{ $mapel->id }}">{{ $mapel->nama_mapel }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Jam Mengajar -->
                     <div class="form-group">
                         <label for="hours_per_week">Jam Mengajar per Minggu</label>
-                        <input type="number" class="form-control" name="hours_per_week" required>
+                        <input type="number" class="form-control" name="hours_per_week" value="{{ old('hours_per_week') }}" required>
                     </div>
-
-                    <!-- Pilihan Hari -->
-                    <div class="form-group mt-1">
-                        <div class="text-bold-600 font-medium-2">Pilih Hari</div>
+                    <div class="mt-1 form-group">
+                        <div class="text-bold-600 font-medium-2">
+                            Pilih Hari
+                        </div>
                         <select class="select2 js-example-programmatic-multi form-control" id="programmatic-multiple-create" multiple="multiple">
                             <option value="Senin">Senin</option>
                             <option value="Selasa">Selasa</option>
@@ -70,8 +63,6 @@
                             Hapus
                         </button>
                     </div>
-
-                    <!-- Form Dinamis Hari dan Jam -->
                     <div id="dynamic-fields"></div>
 
                     <div class="modal-footer">
@@ -84,17 +75,13 @@
     </div>
 </div>
 
-
 <script>
     $(document).ready(function() {
-        // Fungsi untuk menambah form berdasarkan jumlah hari yang dipilih
         function updateDayFields() {
-            const selectedDays = $('#programmatic-multiple-create').val(); // Ambil nilai hari yang dipilih
-            const dynamicFields = $('#dynamic-fields'); // Tempat form dinamis
+            const selectedDays = $('#programmatic-multiple-create').val();
+            const dynamicFields = $('#dynamic-fields'); 
 
-            dynamicFields.empty(); // Kosongkan field sebelumnya
-
-            // Loop untuk membuat form sesuai jumlah hari yang dipilih
+            dynamicFields.empty(); 
             selectedDays.forEach(function(day) {
                 dynamicFields.append(`
                     <div class="form-group">
@@ -113,22 +100,17 @@
             });
         }
 
-        // Setel nilai untuk mengecualikan Minggu
         $('.js-programmatic-multi-set-val').click(function() {
             $('#programmatic-multiple-create').val(['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu']).trigger('change');
         });
 
-        // Hapus pilihan
         $('.js-programmatic-multi-clear').click(function() {
             $('#programmatic-multiple-create').val([]).trigger('change');
         });
 
-        // Update field setiap kali pilihan hari berubah
         $('#programmatic-multiple-create').change(function() {
             updateDayFields();
         });
-
-        // Panggil update field saat modal pertama kali dibuka
         updateDayFields();
     });
 </script>
