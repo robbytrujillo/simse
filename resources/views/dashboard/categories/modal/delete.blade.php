@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Category -->
 <div class="modal fade" id="delete_category_modal" tabindex="-1" role="dialog" aria-labelledby="deleteCategoryLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
