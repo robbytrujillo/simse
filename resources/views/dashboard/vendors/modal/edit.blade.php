@@ -1,8 +1,8 @@
-<div class="modal fade" id="category_edit_modal" tabindex="-1" role="dialog" aria-labelledby="editCategoryLabel" aria-hidden="true">
+<div class="modal fade" id="vendor_edit_modal" tabindex="-1" role="dialog" aria-labelledby="editVendorLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-info white">
-                <h5 class="modal-title" id="editCategoryLabel">Edit Kategori</h5>
+                <h5 class="modal-title" id="editVendorLabel">Edit Vendor</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
                     @csrf
                     @method('PUT')
                     <div class="form-group">
-                        <label for="name">Nama Kategori</label>
+                        <label for="name">Nama Vendor</label>
                         <input type="text" class="form-control" name="name" id="edit_name" required>
                     </div>
                     <div class="form-group">
@@ -21,7 +21,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                        <button type="submit" class="btn btn-primary">Update Kategori</button>
+                        <button type="submit" class="btn btn-primary">Update Vendor</button>
                     </div>
                 </form>
             </div>

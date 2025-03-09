@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\MapelController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\TeacherController;
 use App\Http\Controllers\Dashboard\TeachingDataController;
+use App\Http\Controllers\Dashboard\VendorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
@@ -25,6 +26,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/teachings', TeachingDataController::class);
     Route::resource('/announcements', AnnouncementController::class);
     Route::resource('/categories', CategoryController::class);
+    Route::resource('/vendors', VendorController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -55,9 +57,9 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/categories', function () {
     //     return view('dashboard.categories.index');
     // })->name('categories.index');
-    Route::get('/vendors', function () {
-        return view('dashboard.vendors.index');
-    })->name('categories.index');
+    // Route::get('/vendors', function () {
+    //     return view('dashboard.vendors.index');
+    // })->name('categories.index');
     Route::get('/inventories', function () {
         return view('dashboard.inventories.index');
     })->name('inventories.index');
