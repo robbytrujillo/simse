@@ -1,6 +1,7 @@
 <?php 
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Dashboard\AnnouncementController;
 use App\Http\Controllers\Dashboard\ClassRoomController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\MapelController;
@@ -21,6 +22,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::post('/students/import', [StudentController::class, 'import'])->name('students.import');
     Route::resource('/mapels', MapelController::class);
     Route::resource('/teachings', TeachingDataController::class);
+    Route::resource('/announcements', AnnouncementController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -45,9 +47,9 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/students', function () {
     //     return view('dashboard.students.index');
     // })->name('students.index');
-    Route::get('/announcements', function () {
-        return view('dashboard.announcements.index');
-    })->name('announcements.index');
+    // Route::get('/announcements', function () {
+    //     return view('dashboard.announcements.index');
+    // })->name('announcements.index');
     Route::get('/categories', function () {
         return view('dashboard.categories.index');
     })->name('categories.index');
