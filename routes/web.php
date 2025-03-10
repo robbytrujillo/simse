@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\InventoryController;
 use App\Http\Controllers\Dashboard\MapelController;
 use App\Http\Controllers\Dashboard\StudentController;
+use App\Http\Controllers\Dashboard\SanctionTypeController;
 use App\Http\Controllers\Dashboard\TeacherController;
 use App\Http\Controllers\Dashboard\TeachingDataController;
 use App\Http\Controllers\Dashboard\VendorController;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/vendors', VendorController::class);
     Route::resource('/inventories', InventoryController::class);
     Route::resource('/violation-types', ViolationTypeController::class);
+    Route::resource('/sanction-types', SanctionTypeController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -73,9 +75,9 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/violation-types', function () {
     //     return view('dashboard.violation_types.index');
     // })->name('violation-types.index');
-    Route::get('/sanction-types', function () {
-        return view('dashboard.sanction_types.index');
-    })->name('sanction-types.index');
+    // Route::get('/sanction-types', function () {
+    //     return view('dashboard.sanction_types.index');
+    // })->name('sanction-types.index');
     Route::get('/achievements', function () {
         return view('dashboard.achievements.index');
     })->name('achievements.index');

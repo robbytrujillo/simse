@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Sanction Type -->
 <div class="modal fade" id="delete_sanction_type_modal" tabindex="-1" role="dialog" aria-labelledby="deleteSanctionTypeLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
