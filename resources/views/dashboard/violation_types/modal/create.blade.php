@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('violation-types.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Jenis Pelanggaran</label>

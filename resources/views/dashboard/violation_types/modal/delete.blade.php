@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Violation Type -->
 <div class="modal fade" id="delete_violation_type_modal" tabindex="-1" role="dialog" aria-labelledby="deleteViolationTypeLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
