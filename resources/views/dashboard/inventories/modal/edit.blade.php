@@ -12,7 +12,6 @@
                     @csrf
                     @method('PUT')
                     <div class="row">
-                        <!-- Kolom Kiri -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="item_code">Kode Barang</label>
@@ -24,19 +23,22 @@
                             </div>
                             <div class="form-group">
                                 <label for="category_id">Kategori</label>
-                                <select name="category_id" class="form-control" required>
-                                    <option value="">Pilih Kategori</option>
-                                    <option value="1">Meja</option>
-                                    <option value="2">Kursi</option>
-                                    <option value="3">Komputer</option>
+                                <select name="category_id" class="form-control" id="edit_category_id" required>
+                                    @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id', $inventory->category_id ?? '') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="vendor_id">Asal Perolehan</label>
-                                <select name="vendor_id" class="form-control" required>
-                                    <option value="">Pilih Asal</option>
-                                    <option value="1">Dana Sekolah</option>
-                                    <option value="2">Dana BOS</option>
+                                <select name="vendor_id" class="form-control" id="edit_vendor_id" required>
+                                    @foreach ($vendors as $vendor)
+                                    <option value="{{ $vendor->id }}" {{ old('vendor_id', $inventory->vendor_id ?? '') == $vendor->id ? 'selected' : '' }}>
+                                        {{ $vendor->name }}
+                                    </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
@@ -44,15 +46,13 @@
                                 <textarea class="form-control" name="description" id="edit_description" rows="3" required></textarea>
                             </div>
                         </div>
-                        <!-- Kolom Kanan -->
                         <div class="col-md-6">
-                        <div class="form-group">
-                                <label for="class_id">Kelas</label>
-                                <select class="form-control" name="class_id" required>
-                                    <option value="">Pilih Kelas</option>
-                                    <option value="1" >Kelas A</option>
-                                    <option value="2" >Kelas B</option>
-                                    <option value="3" >Kelas C</option>
+                            <div class="form-group">
+                                <label for="class_id">Lokasi</label>
+                                <select class="form-control" name="class_id" id="edit_class_id" required>
+                                    @foreach($classes as $class)
+                                    <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">

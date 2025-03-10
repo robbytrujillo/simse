@@ -1,5 +1,4 @@
-<!-- Delete Confirmation Modal for Inventory -->
-<div class="modal fade" id="delete_inventory_modal" tabindex="-1" role="dialog" aria-labelledby="deleteInventoryLabel" aria-hidden="true">
+<div class="modal fade" id="delete_inventory_modal" tabindex="-1" role="dialog" aria-labelledby="deleteVendorLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger white">
@@ -9,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>Apakah Anda yakin ingin menghapus inventory ini?</p>
+                <p>Apakah Anda yakin ingin menghapus Inventory ini?</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>

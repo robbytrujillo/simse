@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\AnnouncementController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ClassRoomController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\InventoryController;
 use App\Http\Controllers\Dashboard\MapelController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\TeacherController;
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/announcements', AnnouncementController::class);
     Route::resource('/categories', CategoryController::class);
     Route::resource('/vendors', VendorController::class);
+    Route::resource('/inventories', InventoryController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -60,9 +62,9 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/vendors', function () {
     //     return view('dashboard.vendors.index');
     // })->name('categories.index');
-    Route::get('/inventories', function () {
-        return view('dashboard.inventories.index');
-    })->name('inventories.index');
+    // Route::get('/inventories', function () {
+    //     return view('dashboard.inventories.index');
+    // })->name('inventories.index');
     Route::get('/violations', function () {
         return view('dashboard.violations.index');
     })->name('violations.index');
