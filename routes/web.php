@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Dashboard\AchievementAwardController;
+use App\Http\Controllers\Dashboard\AchievementController;
 use App\Http\Controllers\Dashboard\AchievementTypeController;
 use App\Http\Controllers\Dashboard\AnnouncementController;
 use App\Http\Controllers\Dashboard\CategoryController;
@@ -41,6 +42,8 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::get('/data/laporan', [ViolationController::class, 'export'])->name('violations.export');
     Route::resource('/achievement-types', AchievementTypeController::class);
     Route::resource('/achievement-awards', AchievementAwardController::class);
+    Route::resource('/achievements', AchievementController::class);
+    Route::get('/data/achievement', [AchievementController::class, 'export'])->name('achievements.export');
     
 });
 

@@ -8,61 +8,49 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('achievements.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    <!-- Class Selection Dropdown -->
                     <div class="form-group">
                         <label for="class_id">Kelas</label>
                         <select class="form-control" name="class_id" id="class_id" required>
-                            <option value="1">Kelas A</option>
-                            <option value="2">Kelas B</option>
-                            <option value="3">Kelas C</option>
+                            <option value="">Pilih Kelas</option>
+                            @foreach($classlists as $class)
+                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Student Selection Dropdown -->
                     <div class="form-group">
                         <label for="student_id">Siswa</label>
                         <select class="form-control" name="student_id" id="student_id" required>
-                            <option value="1">John Doe</option>
-                            <option value="2">Jane Smith</option>
-                            <option value="3">Robert Johnson</option>
+                            <option value="">Pilih Siswa</option>
                         </select>
                     </div>
-
-                    <!-- Achievement Type Dropdown -->
                     <div class="form-group">
-                        <label for="achievement_type_id">Jenis Pencapaian</label>
+                        <label for="class_id">Jenis Pencapaian</label>
                         <select class="form-control" name="achievement_type_id" id="achievement_type_id" required>
-                            <option value="1">Keunggulan Akademik</option>
-                            <option value="2">Prestasi Olahraga</option>
-                            <option value="3">Seni dan Kreativitas</option>
+                            <option value="">Pilih Pencapaian</option>
+                            @foreach($achievementstype as $achievementtype)
+                            <option value="{{ $achievementtype->id }}">{{ $achievementtype->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Achievement Date -->
                     <div class="form-group">
                         <label for="date">Tanggal Pencapaian</label>
-                        <input type="date" class="form-control" name="date" value="2025-01-23" required>
+                        <input type="date" class="form-control" name="date" value="{{ old('date') }}" required>
                     </div>
-
-                    <!-- Achievement Description -->
                     <div class="form-group">
                         <label for="description">Deskripsi Pencapaian</label>
-                        <textarea class="form-control" name="description" rows="3" required>Meraih juara pertama dalam lomba sains tingkat sekolah.</textarea>
+                        <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
                     </div>
-
-                    <!-- Achievement Reward -->
                     <div class="form-group">
-                        <label for="achievement_reward_id">Hadiah / Penghargaan</label>
+                        <label for="class_id">Hadiah / Penghargaan</label>
                         <select class="form-control" name="achievement_reward_id" id="achievement_reward_id" required>
-                            <option value="1">Medali Emas</option>
-                            <option value="2">Medali Perak</option>
-                            <option value="3">Sertifikat Penghargaan</option>
+                            <option value="">Pilih Hadiah</option>
+                            @foreach($achievementsaward as $achievementaward)
+                            <option value="{{ $achievementaward->id }}">{{ $achievementaward->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Achievement Photo (if any) -->
                     <div class="form-group">
                         <label for="image">Upload Foto Bukti Pencapaian (Jika ada)</label>
                         <input type="file" class="form-control-file" name="image">
@@ -77,4 +65,3 @@
         </div>
     </div>
 </div>
-
