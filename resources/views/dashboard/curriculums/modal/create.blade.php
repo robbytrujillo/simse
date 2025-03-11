@@ -1,4 +1,3 @@
-<!-- Create Modal for Kurikulum -->
 <div class="modal fade" id="kurikulum_create_modal" tabindex="-1" role="dialog" aria-labelledby="createKurikulumLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -9,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('curriculums.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Kurikulum</label>

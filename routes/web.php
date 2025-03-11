@@ -9,6 +9,7 @@ use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ClassRoomController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\InventoryController;
+use App\Http\Controllers\Dashboard\KurikulumController;
 use App\Http\Controllers\Dashboard\MapelController;
 use App\Http\Controllers\Dashboard\StudentController;
 use App\Http\Controllers\Dashboard\SanctionTypeController;
@@ -44,7 +45,7 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/achievement-awards', AchievementAwardController::class);
     Route::resource('/achievements', AchievementController::class);
     Route::get('/data/achievement', [AchievementController::class, 'export'])->name('achievements.export');
-    
+    Route::resource('/curriculums', KurikulumController::class);
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -99,9 +100,9 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/achievement-awards', function () {
     //     return view('dashboard.achievement_awards.index');
     // })->name('achievement-awards.index');
-    Route::get('/curriculums', function () {
-        return view('dashboard.curriculums.index');
-    })->name('curriculums.index');
+    // Route::get('/curriculums', function () {
+    //     return view('dashboard.curriculums.index');
+    // })->name('curriculums.index');
     Route::get('/silabuses', function () {
         return view('dashboard.silabus.index');
     })->name('silabuses.index');

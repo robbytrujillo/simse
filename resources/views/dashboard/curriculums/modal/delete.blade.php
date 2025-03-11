@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Kurikulum -->
 <div class="modal fade" id="delete_kurikulum_modal" tabindex="-1" role="dialog" aria-labelledby="deleteKurikulumLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
