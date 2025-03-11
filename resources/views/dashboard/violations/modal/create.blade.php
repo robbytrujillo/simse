@@ -8,54 +8,47 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST" enctype="multipart/form-data">
-                    <!-- Class Selection Dropdown -->
+                <form action="{{ route('violations.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                     <div class="form-group">
                         <label for="class_id">Kelas</label>
                         <select class="form-control" name="class_id" id="class_id" required>
                             <option value="">Pilih Kelas</option>
-                            <option value="1">Kelas A</option>
-                            <option value="2">Kelas B</option>
-                            <option value="3">Kelas C</option>
+                            @foreach($classlists as $class)
+                            <option value="{{ $class->id }}">{{ $class->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-
-                    <!-- Student Selection Dropdown -->
                     <div class="form-group">
                         <label for="student_id">Siswa</label>
                         <select class="form-control" name="student_id" id="student_id" required>
                             <option value="">Pilih Siswa</option>
-                            <option value="1">Siswa 1</option>
-                            <option value="2">Siswa 2</option>
-                            <option value="3">Siswa 3</option>
                         </select>
                     </div>
-
-                    <!-- Other form fields -->
                     <div class="form-group">
                         <label for="violation_type">Jenis Pelanggaran</label>
                         <select class="form-control" name="violation_type_id" id="violation_type_id" required>
                             <option value="">Pilih Jenis Pelanggaran</option>
-                            <option value="1">Terlambat</option>
-                            <option value="2">Tidak Menggunakan Seragam</option>
-                            <option value="3">Bolos</option>
+                            @foreach($violationTypes as $violationType)
+                            <option value="{{ $violationType->id }}">{{ $violationType->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="date">Tanggal Pelanggaran</label>
-                        <input type="date" class="form-control" name="date" required>
+                        <input type="date" class="form-control" name="date" value="{{ old('date') }}" required>
                     </div>
                     <div class="form-group">
                         <label for="description">Deskripsi Pelanggaran</label>
-                        <textarea class="form-control" name="description" rows="3"></textarea>
+                        <textarea class="form-control" name="description" rows="3">{{ old('description') }}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="penalty">Sanksi</label>
                         <select class="form-control" name="sanction_type_id" id="sanction_type_id" required>
                             <option value="">Pilih Jenis Sanksi</option>
-                            <option value="1">Peringatan</option>
-                            <option value="2">Skorsing</option>
-                            <option value="3">Panggilan Orang Tua</option>
+                            @foreach($sanctionTypes as $sanctionType)
+                            <option value="{{ $sanctionType->id }}">{{ $sanctionType->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="form-group">
@@ -71,4 +64,3 @@
         </div>
     </div>
 </div>
-

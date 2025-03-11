@@ -1,6 +1,8 @@
 <?php 
 
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Dashboard\AchievementAwardController;
+use App\Http\Controllers\Dashboard\AchievementTypeController;
 use App\Http\Controllers\Dashboard\AnnouncementController;
 use App\Http\Controllers\Dashboard\CategoryController;
 use App\Http\Controllers\Dashboard\ClassRoomController;
@@ -12,6 +14,7 @@ use App\Http\Controllers\Dashboard\SanctionTypeController;
 use App\Http\Controllers\Dashboard\TeacherController;
 use App\Http\Controllers\Dashboard\TeachingDataController;
 use App\Http\Controllers\Dashboard\VendorController;
+use App\Http\Controllers\Dashboard\ViolationController;
 use App\Http\Controllers\Dashboard\ViolationTypeController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +36,12 @@ Route::middleware(['auth', 'verified'])->prefix('/dashboard')->group(function ()
     Route::resource('/inventories', InventoryController::class);
     Route::resource('/violation-types', ViolationTypeController::class);
     Route::resource('/sanction-types', SanctionTypeController::class);
+    Route::resource('/violations', ViolationController::class);
+    Route::get('/get-students-by-class', [ViolationController::class, 'getStudentsByClass'])->name('getStudentsByClass');
+    Route::get('/data/laporan', [ViolationController::class, 'export'])->name('violations.export');
+    Route::resource('/achievement-types', AchievementTypeController::class);
+    Route::resource('/achievement-awards', AchievementAwardController::class);
+    
 });
 
 Route::prefix('dashboard')->group(function () {
@@ -78,15 +87,15 @@ Route::prefix('dashboard')->group(function () {
     // Route::get('/sanction-types', function () {
     //     return view('dashboard.sanction_types.index');
     // })->name('sanction-types.index');
-    Route::get('/achievements', function () {
-        return view('dashboard.achievements.index');
-    })->name('achievements.index');
-    Route::get('/achievement-types', function () {
-        return view('dashboard.achievement_types.index');
-    })->name('achievement-types.index');
-    Route::get('/achievement-awards', function () {
-        return view('dashboard.achievement_awards.index');
-    })->name('achievement-awards.index');
+    // Route::get('/achievements', function () {
+    //     return view('dashboard.achievements.index');
+    // })->name('achievements.index');
+    // Route::get('/achievement-types', function () {
+    //     return view('dashboard.achievement_types.index');
+    // })->name('achievement-types.index');
+    // Route::get('/achievement-awards', function () {
+    //     return view('dashboard.achievement_awards.index');
+    // })->name('achievement-awards.index');
     Route::get('/curriculums', function () {
         return view('dashboard.curriculums.index');
     })->name('curriculums.index');

@@ -3,14 +3,14 @@
 @section('content')
 <section id="configuration">
   <div class="content-header row">
-    <div class="content-header-left col-md-4 col-12 mb-2">
+    <div class="mb-2 content-header-left col-md-4 col-12">
       <h3 class="content-header-title">Data Pelanggaran</h3>
     </div>
     <div class="content-header-right col-md-8 col-12">
       <div class="breadcrumbs-top float-md-right">
-        <div class="breadcrumb-wrapper mr-1">
+        <div class="mr-1 breadcrumb-wrapper">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Pelanggaran</li>
           </ol>
         </div>
@@ -23,13 +23,26 @@
         <div class="card-header">
           <div class="row">
             <a href="#" data-toggle="modal" data-target="#violation_create_modal"
-              class="btn btn-bg-gradient-x-purple-blue col-12 col-md-2 mr-1 mb-1 d-flex justify-content-center align-items-center">
+              class="mb-1 mr-1 btn btn-bg-gradient-x-purple-blue col-12 col-md-2 d-flex justify-content-center align-items-center">
               <i class="ft-plus"></i> Tambah Pelanggaran
             </a>
+            <form action="{{ route('violations.export') }}" method="GET" class="col-12 col-md-3">
+              <div class="form-group">
+                <select class="form-control" name="class" required>
+                  <option value="">Pilih Kelas</option>
+                  @foreach($classlists as $class)
+                  <option value="{{ $class->id }}">{{ $class->name }}</option>
+                  @endforeach
+                </select>
+              </div>
+              <button type="submit" class="btn btn-bg-gradient-x-purple-blue col-12 col-md-12">
+                <i class="ft-download"></i> Ekspor Data
+              </button>
+            </form>
           </div>
           <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
           <div class="heading-elements">
-            <ul class="list-inline mb-0">
+            <ul class="mb-0 list-inline">
               <li><a data-action="collapse"><i class="ft-minus"></i></a></li>
               <li><a data-action="reload"><i class="ft-rotate-cw"></i></a></li>
               <li><a data-action="expand"><i class="ft-maximize"></i></a></li>
@@ -53,44 +66,28 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach($violations as $violation)
                   <tr>
-                    <td>1</td>
-                    <td>Ahmad Syafiq</td>
-                    <td>Tidak Membawa Buku</td>
-                    <td>01 Jan 2025</td>
-                    <td>Pak Budi</td>
+                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $violation->student->name }}</td>
+                    <td>{{ $violation->violationType->name }}</td>
+                    <td>{{ \Carbon\Carbon::parse($violation->date)->format('d M Y') }}</td>
+                    <td>{{ $violation->reporter->name }}</td>
                     <td>
                       <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
+                        <a href="#" data-id="{{ $violation->id }}"
+                          class="mr-2 text-white btn btn-sm btn-success edit-modal" data-toggle="modal"
                           data-target="#violation_edit_modal" title="Ubah Pelanggaran">
                           <i class="ft-edit"></i>
                         </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-violation" data-toggle="modal"
-                          data-target="#delete_violation_modal" title="Hapus">
+                        <a href="#" class="mx-1 btn btn-bg-gradient-x-red-pink btn-sm delete-violation" data-id="{{ $violation->id }}"
+                          data-toggle="modal" data-target="#delete_violation_modal" title="Hapus">
                           <i class="ft-delete"></i>
                         </a>
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Siti Aminah</td>
-                    <td>Terlambat Masuk Kelas</td>
-                    <td>02 Jan 2025</td>
-                    <td>Ibu Sari</td>
-                    <td>
-                      <div class="d-flex justify-content-start align-items-center">
-                        <a href="#" class="btn btn-sm btn-success text-white edit-modal mr-2" data-toggle="modal"
-                          data-target="#violation_edit_modal" title="Ubah Pelanggaran">
-                          <i class="ft-edit"></i>
-                        </a>
-                        <a href="#" class="btn btn-bg-gradient-x-red-pink btn-sm mx-1 delete-violation" data-toggle="modal"
-                          data-target="#delete_violation_modal" title="Hapus">
-                          <i class="ft-delete"></i>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
+                  @endforeach
                 </tbody>
                 <tfoot>
                   <tr>
@@ -104,7 +101,6 @@
                 </tfoot>
               </table>
             </div>
-
           </div>
         </div>
       </div>
@@ -120,4 +116,3 @@
 @include('dashboard.violations._script')
 @endpush
 @endsection
-

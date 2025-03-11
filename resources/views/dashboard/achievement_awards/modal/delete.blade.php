@@ -1,4 +1,3 @@
-<!-- Delete Confirmation Modal for Achievement Award -->
 <div class="modal fade" id="delete_achievement_award_modal" tabindex="-1" role="dialog" aria-labelledby="deleteAchievementAwardLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

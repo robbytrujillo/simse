@@ -1,4 +1,3 @@
-<!-- Create Achievement Type Modal -->
 <div class="modal fade" id="achievement_type_create_modal" tabindex="-1" role="dialog" aria-labelledby="createAchievementTypeLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -9,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('achievement-types.store') }}" method="POST">
                     @csrf
                     <div class="form-group">
                         <label for="name">Nama Jenis Pencapaian</label>
