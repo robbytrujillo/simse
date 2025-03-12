@@ -22,7 +22,9 @@ class ExamController extends Controller
             $teacher = Teacher::where('user_id', $userId)->first();
 
             if (!$teacher) {
-                return redirect()->route('home')->with('error', 'Teacher not found');
+                // return redirect()->route('home')->with('error', 'Teacher not found');
+                return redirect()->route('dashboard.index')->with('error', 'Teacher not found');
+
             }
 
             $teacherId = $teacher->id;

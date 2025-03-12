@@ -1,5 +1,5 @@
 <div class="main-menu menu-fixed menu-light menu-accordion menu-shadow" data-scroll-to-active="true" data-img="{{ asset('back/images/backgrounds/02.jpg') }}">
-    <div class="navbar-header">
+    {{--  <div class="navbar-header">
         <ul class="flex-row nav navbar-nav">
             <li class="mr-auto nav-item">
                 <a class="navbar-brand" href="{{ url('dashboard/index') }}">
@@ -12,7 +12,28 @@
                 <a class="nav-link close-navbar"><i class="ft-x"></i></a>
             </li>
         </ul>
+    </div>  --}}
+
+    <div class="navbar-header">
+        <ul class="flex-row nav navbar-nav">
+            <li class="mr-auto nav-item">
+                <a class="navbar-brand" href="index.html">
+                    @if ($config && $config->gambar_header)
+                    
+                    <img class="brand-logo" alt="{{ $config->text_header }}" src="{{ asset('storage/' . $config->gambar_header) }}" />
+                    @else
+                  
+                    <img class="brand-logo" alt="admin logo" src="{{ asset('back/images/logo/ihbs-logo.png') }}" />
+                    @endif
+                    <h3 class="brand-text">{{ $config->text_header ?? 'SIMSE IHBS' }}</h3>
+                </a>
+            </li>
+            <li class="nav-item d-md-none">
+                <a class="nav-link close-navbar"><i class="ft-x"></i></a>
+            </li>
+        </ul>
     </div>
+
 
     <div class="navigation-background"></div>
     <div class="main-menu-content">

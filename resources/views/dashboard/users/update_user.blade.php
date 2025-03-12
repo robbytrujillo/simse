@@ -10,7 +10,7 @@
       <div class="breadcrumbs-top float-md-right">
         <div class="mr-1 breadcrumb-wrapper">
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Update Profile</li>
           </ol>
         </div>
@@ -33,31 +33,43 @@
         </div>
         <div class="card-content collapse show">
           <div class="card-body card-dashboard">
-            <form method="POST" action="#">
+            <form method="POST" action="{{ route('update.profile', $user->id) }}">
               @csrf
               @method('PUT')
 
               <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" name="name" value="Kurnia" placeholder="Enter Name" required>
+                <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" placeholder="Enter Name" required>
+                @error('name')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
 
               <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="kurnia@example.com" placeholder="Enter Email" required>
+                <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email) }}" placeholder="Enter Email" required>
+                @error('email')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
 
               <div class="form-group">
-                <label for="password">Password (Leave blank to keep current password)</label>
+                <label for="password">Password (Biarkan kosong untuk mempertahankan kata sandi saat ini)</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter New Password">
+                @error('password')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
 
               <div class="form-group">
                 <label for="password_confirmation">Confirm Password</label>
                 <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm New Password">
+                @error('password_confirmation')
+                <span class="text-danger">{{ $message }}</span>
+                @enderror
               </div>
-
               <button type="submit" class="mb-1 mr-1 btn btn-bg-gradient-x-purple-blue col-12 col-md-2">Update User</button>
+              
             </form>
           </div>
         </div>
@@ -67,4 +79,3 @@
 </section>
 
 @endsection
-
