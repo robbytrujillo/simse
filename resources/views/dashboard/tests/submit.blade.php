@@ -10,7 +10,7 @@
             <div class="breadcrumbs-top float-md-right">
                 <div class="mr-1 breadcrumb-wrapper">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('dashboard.index') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">Submit Ujian</li>
                     </ol>
                 </div>
@@ -22,7 +22,7 @@
             <div class="card">
                 <div class="card-header">
                     <p class="info darken-2">Silakan submit dan simpan ujian anda </p>
-                    <form action="#" method="POST" class="mt-3">
+                    <form action="{{ route('exams.complete', $exam->id) }}" method="POST" class="mt-3">
                         @csrf
                         <button type="submit" class="btn btn-bg-gradient-x-blue-cyan">Selesaikan Ujian</button>
                     </form>

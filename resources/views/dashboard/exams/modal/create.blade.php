@@ -8,10 +8,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="#" method="POST">
+                <form action="{{ route('exams.store') }}" method="POST">
                     @csrf
                     <div class="row">
-                        <!-- Kolom Kiri -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="title">Judul Ujian</label>
@@ -30,40 +29,38 @@
                                 <input type="datetime-local" class="form-control" name="end_time" required>
                             </div>
                         </div>
-                        <!-- Kolom Kanan -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="duration">Durasi (Menit)</label>
                                 <input type="number" class="form-control" name="duration" required>
                             </div>
                             <div class="form-group">
-                                <label for="edit_class_id">Kelas</label>
-                                <select class="form-control" name="class_id" id="edit_class_id" required>
+                                <label for="class_id">Kelas</label>
+                                <select class="form-control" name="class_id" required>
                                     <option value="">Pilih Kelas</option>
-                                    <option value="1">Kelas 10 IPA</option>
-                                    <option value="2">Kelas 10 IPS</option>
-                                    <option value="3">Kelas 11 IPA</option>
+                                    @foreach($classes as $class)
+                                        <option value="{{ $class->id }}">{{ $class->name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="edit_teacher_id">Guru</label>
-                                <select class="form-control" name="teacher_id" id="edit_teacher_id" required>
+                                <label for="teacher_id">Guru</label>
+                                <select class="form-control" name="teacher_id" required>
                                     <option value="">Pilih Guru</option>
-                                    <option value="1">Bapak Andi</option>
-                                    <option value="2">Ibu Siti</option>
-                                    <option value="3">Bapak Budi</option>
+                                    @foreach($teachers as $teacher)
+                                        <option value="{{ $teacher->id }}">{{ $teacher->full_name }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="edit_mapel_id">Mata Pelajaran</label>
-                                <select class="form-control" name="mapel_id" id="edit_mapel_id" required>
+                                <label for="mapel_id">Mata Pelajaran</label>
+                                <select class="form-control" name="mapel_id" required>
                                     <option value="">Pilih Mapel</option>
-                                    <option value="1">Matematika</option>
-                                    <option value="2">Bahasa Inggris</option>
-                                    <option value="3">Fisika</option>
+                                    @foreach($subjects as $subject)
+                                        <option value="{{ $subject->id }}">{{ $subject->nama_mapel }}</option>
+                                    @endforeach
                                 </select>
                             </div>
-
                             <div class="form-group">
                                 <label for="is_active">Status Aktif</label>
                                 <select class="form-control" name="is_active" required>
@@ -82,3 +79,4 @@
         </div>
     </div>
 </div>
+

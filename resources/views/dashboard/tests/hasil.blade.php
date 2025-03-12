@@ -18,87 +18,34 @@
         </div>
     </div>
     <div class="row match-height">
+        @forelse ($exams as $exam)
         <div class="col-xl-4 col-lg-6 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <a class="heading-elements-toggle">
-                        <i class="la la-ellipsis-v font-medium-3"></i>
-                    </a>
+        <div class="card">
+                    <div class="card-header">
+                        <a class="heading-elements-toggle">
+                            <i class="la la-ellipsis-v font-medium-3"></i>
+                        </a>
+                    </div>
+        <div class="card-content">
+            <div class="text-center card-body">
+                <div class="pt-0 pb-0 card-header">
+                    <p class="info darken-2">{{ $exam->title }}</p>
                 </div>
                 <div class="card-content">
-                    <div class="text-center card-body">
-                        <div class="pt-0 pb-0 card-header">
-                            <p class="info darken-2">Ujian Matematika</p>
-                        </div>
-                        <div class="card-content">
-                            <ul class="clearfix mt-2 list-inline">
-                                <li>
-                                    <h5 class="mb-3 blue-grey lighten-1 text-bold-70">Deskripsi ujian matematika dasar.</h5>
-                                    <span class="info darken-2">
-                                        <a href="#" class="btn btn-bg-gradient-x-blue-cyan">Lihat Hasil Ujian</a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    <ul class="clearfix mt-2 list-inline">
+                        <li>
+                            <h5 class="mb-3 blue-grey lighten-1 text-bold-70">{{ $exam->description }}</h5>
+                            <span class="info darken-2">
+                                <a href="{{ route('exams.results', $exam->id) }}" class="btn btn-bg-gradient-x-blue-cyan">Lihat Hasil Ujian</a>
+                            </span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-
-        <div class="col-xl-4 col-lg-6 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <a class="heading-elements-toggle">
-                        <i class="la la-ellipsis-v font-medium-3"></i>
-                    </a>
-                </div>
-                <div class="card-content">
-                    <div class="text-center card-body">
-                        <div class="pt-0 pb-0 card-header">
-                            <p class="info darken-2">Ujian Fisika</p>
-                        </div>
-                        <div class="card-content">
-                            <ul class="clearfix mt-2 list-inline">
-                                <li>
-                                    <h5 class="mb-3 blue-grey lighten-1 text-bold-70">Deskripsi ujian fisika dasar.</h5>
-                                    <span class="info darken-2">
-                                        <a href="#" class="btn btn-bg-gradient-x-blue-cyan">Lihat Hasil Ujian</a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
-        <div class="col-xl-4 col-lg-6 col-md-12">
-            <div class="card">
-                <div class="card-header">
-                    <a class="heading-elements-toggle">
-                        <i class="la la-ellipsis-v font-medium-3"></i>
-                    </a>
-                </div>
-                <div class="card-content">
-                    <div class="text-center card-body">
-                        <div class="pt-0 pb-0 card-header">
-                            <p class="info darken-2">Ujian Kimia</p>
-                        </div>
-                        <div class="card-content">
-                            <ul class="clearfix mt-2 list-inline">
-                                <li>
-                                    <h5 class="mb-3 blue-grey lighten-1 text-bold-70">Deskripsi ujian kimia dasar.</h5>
-                                    <span class="info darken-2">
-                                        <a href="#" class="btn btn-bg-gradient-x-blue-cyan">Lihat Hasil Ujian</a>
-                                    </span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
-
+        @empty
         <div class="col-md-12">
             <div class="card">
                 <div class="text-center card-body">
@@ -106,7 +53,7 @@
                 </div>
             </div>
         </div>
+        @endforelse
     </div>
 </section>
 @endsection
-

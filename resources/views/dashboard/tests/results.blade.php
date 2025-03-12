@@ -21,14 +21,15 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title" id="horz-layout-colored-controls">Ujian Matematika</h4>
-                    <h5>Deskripsi: Ujian Matematika Dasar</h5>
+                    <h4 class="card-title" id="horz-layout-colored-controls">{{ $exam->title }}</h4>
+                    <h5>Deskripsi: {{ $exam->description }}</h5>
                     <div class="card-text">
-                        <p>Kelas: 10A</p>
-                        <p>Wali Kelas: Budi Santoso</p>
-                        <p>Waktu Mulai: 08:00</p>
-                        <p>Waktu Selesai: 10:00</p>
+                        <p>Kelas: {{ $exam->classRoom->name }}</p>
+                        <p>Wali Kelas: {{ $exam->classRoom->teacher->full_name }}</p>
+                        <p>Waktu Mulai: {{ $exam->start_time }}</p>
+                        <p>Waktu Selesai: {{ $exam->end_time }}</p>
                     </div>
+                    
                     <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                     <div class="heading-elements">
                         <ul class="mb-0 list-inline">
@@ -38,7 +39,7 @@
                             <li><a data-action="close"><i class="ft-x"></i></a></li>
                         </ul>
                     </div>
-                    <a href="#" class="btn btn-bg-gradient-x-red-pink">
+                    <a href="{{ route('results.export', ['id' => $exam->id, 'export' => true]) }}" class="btn btn-bg-gradient-x-red-pink">
                         Export to Excel
                     </a>
                 </div>
@@ -55,24 +56,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($exam->results as $result)
                                     <tr>
-                                        <td>1</td>
-                                        <td>Kurnia</td>
-                                        <td>12345</td>
-                                        <td>90</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $result->student->name ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $result->student->students->first()->nis ?? 'Tidak diketahui' }}</td>
+                                        <td>{{ $result->score }}</td>
                                     </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Andi</td>
-                                        <td>67890</td>
-                                        <td>85</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Nugroho</td>
-                                        <td>11223</td>
-                                        <td>92</td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                                 <tfoot>
                                     <tr>
@@ -90,5 +81,5 @@
         </div>
     </div>
 </section>
-@endsection
 
+@endsection

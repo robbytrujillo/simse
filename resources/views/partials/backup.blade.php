@@ -17,7 +17,6 @@
     <div class="navigation-background"></div>
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            @if(auth()->user() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru')))
             <li class="nav-item {{ request()->is('dashboard/index*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ url('dashboard/index') }}">
                     <i class="ft-file"></i>
@@ -25,8 +24,6 @@
                     <span class="float-right badge badge-pill badge-warning">1.2</span>
                 </a>
             </li>
-            @endif
-            @if(auth()->user() && auth()->user()->hasRole('admin'))
             <li class="nav-item {{ request()->is('apps*') ? 'active' : '' }}">
                 <a href="#"><i class="ft-layers"></i><span class="menu-title" data-i18n="">Master Data</span></a>
                 <ul class="menu-content">
@@ -64,8 +61,6 @@
                     </li>
                 </ul>
             </li>
-            @endif
-            @if(auth()->user() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru')))
             <li class=" nav-item {{ request()->is('dashboard/violations*') || request()->is('dashboard/sanction-types*')|| request()->is('dashboard/violation-types*')  ? 'active' : '' }}"><a href="#"><i class="ft-aperture"></i><span class="menu-title" data-i18n="">Data Pelanggaran</span></a>
                 <ul class="menu-content">
                     <li class="{{ request()->is('dashboard/violations') ? 'active' : '' }}">
@@ -102,27 +97,20 @@
                     </li>
                 </ul>
             </li>
-            @endif
             <li class=" nav-item {{ request()->is('dashboard/exams*') || request()->is('dashboard/questions*') ? 'active' : '' }}"><a href="#"><i class="ft-command"></i><span class="menu-title" data-i18n="">Data Ujian</span></a>
                 <ul class="menu-content">
-                    @if(auth()->user() && (auth()->user()->hasRole('admin') || auth()->user()->hasRole('guru')))
                     <li class="{{ request()->is('dashboard/exams') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ url('dashboard/exams') }}">Data Ujian</a>
                     </li>
                     <li class="{{ request()->is('dashboard/questions') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ url('dashboard/questions') }}">Soal Ujian</a>
                     </li>
-                    @endif
-                    @if(auth()->user() && (auth()->user()->hasRole('siswa') ))
                     <li class="{{ request()->is('dashboard/tests') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ url('dashboard/tests') }}">Daftar Ujian</a>
                     </li>
-                    @endif
-                    @if(auth()->user() && (auth()->user()->hasRole('guru') ))
                     <li class="{{ request()->is('dashboard/hasilujian') ? 'active' : '' }}">
                         <a class="menu-item" href="{{ url('dashboard/hasilujian') }}">Hasil Ujian</a>
                     </li>
-                    @endif
                 </ul>
             </li>
             <li class="nav-item {{ request()->is('dashboard/edit_profile*') ? 'active' : '' }}">
@@ -131,14 +119,12 @@
                     <span class="menu-title" data-i18n="">Update Profile</span>
                 </a>
             </li>
-            @if(auth()->user() && auth()->user()->hasRole('admin'))
             <li class="nav-item {{ request()->is('dashboard/configs*') ? 'active' : '' }}">
                 <a class="menu-item" href="{{ url('dashboard/configs') }}">
                     <i class="ft-settings"></i>
                     <span class="menu-title" data-i18n="">Settings</span>
                 </a>
             </li>
-            @endif
         </ul>
     </div>
 </div>
